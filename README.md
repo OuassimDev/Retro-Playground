@@ -5,7 +5,7 @@
 
 ### *Step back into the golden age of gaming*
 
-[![Live Demo](https://img.shields.io/badge/🕹️_Play_Now-Live_Demo-ff69b4?style=for-the-badge)](YOUR_LIVE_URL_HERE)
+[![Live Demo](https://img.shields.io/badge/🕹️_Play_Now-Live_Demo-ff69b4?style=for-the-badge)](https://retroplayground.vercel.app/)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 [![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge)](https://github.com/YOUR_USERNAME)
 
@@ -50,7 +50,7 @@ Experience the joy of classic arcade games, reimagined for the modern web with p
 
 <div align="center">
 
-### 👉 **[Play Now](YOUR_LIVE_URL_HERE)** 👈
+### 👉 **[Play Now](https://retroplayground.vercel.app/)** 👈
 
 *Experience the nostalgia in your browser!*
 
