@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe - PlayGround</title>
+    <link rel="stylesheet" href="TicTacToe.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/Retro/assets/images/RP.png">
+</head>
+<body>
+    <a href="../../index.html#Games" class="home-btn">🏠 HOME</a>
+    
+    <div class="Ticcontainer">
+        <h1 id="Turn">X Turn</h1>
+        <div class="cards">
+            <div onclick="CardClick(this)" id="1"></div>
+            <div onclick="CardClick(this)" id="2"></div>
+            <div onclick="CardClick(this)" id="3"></div>
+            <div onclick="CardClick(this)" id="4"></div>
+            <div onclick="CardClick(this)" id="5"></div>
+            <div onclick="CardClick(this)" id="6"></div>
+            <div onclick="CardClick(this)" id="7"></div>
+            <div onclick="CardClick(this)" id="8"></div>
+            <div onclick="CardClick(this)" id="9"></div>
+        </div>
+        <button onclick="ResetGame()">Reset</button>
+    </div>
+
+    <script src="TicTacToe.js"></script>
+</body>
+</html>
