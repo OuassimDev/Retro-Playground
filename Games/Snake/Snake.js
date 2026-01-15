@@ -6,6 +6,7 @@ const gameTitle = document.getElementById('gameTitle');
 const startBtn = document.getElementById('startBtn');
 const resetBtn = document.getElementById('resetBtn');
 const mobileControls = document.getElementById('mobileControls');
+let nextDirection = null;
 
 
 let isHard = false;
@@ -30,7 +31,7 @@ window.onload = function() {
     
     if (mode === 'hard') {
         isHard = true;
-        tileCount = 30;
+        tileCount = 25; 
         gameSpeed = 100;
         gameTitle.textContent = 'Hard Mode';
     } else {
@@ -92,6 +93,19 @@ function startGame() {
 }
 
 function update() {
+    // Process the next direction at the START of the frame
+    if (nextDirection !== null) {
+        // Only allow perpendicular turns (prevent reversing into yourself)
+        if (nextDirection.dx !== 0 && dx === 0) {
+            dx = nextDirection.dx;
+            dy = 0;
+        } else if (nextDirection.dy !== 0 && dy === 0) {
+            dx = 0;
+            dy = nextDirection.dy;
+        }
+        nextDirection = null; // Clear it after processing
+    }
+    
     moveSnake();
     
     if (checkCollision()) {
@@ -110,8 +124,22 @@ function update() {
         
         generateFood();
         
-        if (isHard && score % 3 === 0) {
-            generateObstacles(1);
+        // Hard mode obstacle logic - max 7, add every 5 points
+        if (isHard) {
+            if (obstacles.length < 5) {
+                // Initial obstacles
+                generateObstacles(5 - obstacles.length);
+            } else if (score % 5 === 0 && obstacles.length < 7) {
+                // Replace random obstacle instead of adding
+                replaceRandomObstacle();
+            }
+        }
+        
+        // Decrease speed every 5 points (increase interval = slower)
+        if (score % 5 === 0 && score > 0) {
+            gameSpeed = Math.min(gameSpeed + 10, 150); // Max speed same as easy mode
+            if (gameLoop) clearInterval(gameLoop);
+            gameLoop = setInterval(update, gameSpeed);
         }
     } else {
         snake.pop();
@@ -219,6 +247,16 @@ function generateObstacles(count) {
         
         obstacles.push(obstacle);
     }
+}
+
+function replaceRandomObstacle() {
+    if (obstacles.length === 0) return;
+    
+    
+    const randomIndex = Math.floor(Math.random() * obstacles.length);
+    obstacles.splice(randomIndex, 1);
+    
+    generateObstacles(1);
 }
 
 //ye drawing is completly ai :) :
@@ -469,13 +507,7 @@ function resetGame() {
 function changeDirection(newDx, newDy) {
     if (!gameStarted) return;
 
-    if (newDx !== 0 && dx === 0) {
-        dx = newDx;
-        dy = 0;
-    } else if (newDy !== 0 && dy === 0) {
-        dx = 0;
-        dy = newDy;
-    }
+    nextDirection = { dx: newDx, dy: newDy };
 }
 
 
@@ -486,22 +518,30 @@ document.addEventListener('keydown', (e) => {
         case 'ArrowUp':
         case 'w':
         case 'W':
-            if (dy === 0) { dx = 0; dy = -1; }
+            if (dy !== 1) { 
+                nextDirection = { dx: 0, dy: -1 };
+            }
             break;
         case 'ArrowDown':
         case 's':
         case 'S':
-            if (dy === 0) { dx = 0; dy = 1; }
+            if (dy !== -1) { 
+                nextDirection = { dx: 0, dy: 1 };
+            }
             break;
         case 'ArrowLeft':
         case 'a':
         case 'A':
-            if (dx === 0) { dx = -1; dy = 0; }
+            if (dx !== 1) { 
+                nextDirection = { dx: -1, dy: 0 };
+            }
             break;
         case 'ArrowRight':
         case 'd':
         case 'D':
-            if (dx === 0) { dx = 1; dy = 0; }
+            if (dx !== -1) { 
+                nextDirection = { dx: 1, dy: 0 };
+            }
             break;
     }
 });
