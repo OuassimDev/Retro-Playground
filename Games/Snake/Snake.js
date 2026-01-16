@@ -7,6 +7,7 @@ const startBtn = document.getElementById('startBtn');
 const resetBtn = document.getElementById('resetBtn');
 const mobileControls = document.getElementById('mobileControls');
 let nextDirection = null;
+let isPaused = false;
 
 
 let isHard = false;
@@ -93,6 +94,7 @@ function startGame() {
 }
 
 function update() {
+    if (isPaused) return;
     if (nextDirection !== null) {
         if (nextDirection.dx !== 0 && dx === 0) {
             dx = nextDirection.dx;
@@ -533,6 +535,16 @@ document.addEventListener('keydown', (e) => {
                 nextDirection = { dx: 1, dy: 0 };
             }
             break;
+        case 'p':
+        case 'P':
+            isPaused = !isPaused;
+            if (isPaused) {
+                gameTitle.textContent = '⏸️ PAUSED';
+            } else {
+                gameTitle.textContent = isHard ? 'Hard Mode' : 'Easy Mode';
+            }
+            break;
+            
     }
 });
 
