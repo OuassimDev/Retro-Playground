@@ -66,7 +66,7 @@ function initGame() {
     
     generateFood();
     if (isHard) {
-        generateObstacles(5);
+        generateObstacles(6);
     }
     
     drawGame();
@@ -93,9 +93,7 @@ function startGame() {
 }
 
 function update() {
-    // Process the next direction at the START of the frame
     if (nextDirection !== null) {
-        // Only allow perpendicular turns (prevent reversing into yourself)
         if (nextDirection.dx !== 0 && dx === 0) {
             dx = nextDirection.dx;
             dy = 0;
@@ -103,7 +101,7 @@ function update() {
             dx = 0;
             dy = nextDirection.dy;
         }
-        nextDirection = null; // Clear it after processing
+        nextDirection = null;
     }
     
     moveSnake();
@@ -123,24 +121,16 @@ function update() {
         }
         
         generateFood();
-        
-        // Hard mode obstacle logic - max 7, add every 5 points
+
         if (isHard) {
             if (obstacles.length < 5) {
                 // Initial obstacles
                 generateObstacles(5 - obstacles.length);
             } else if (score % 5 === 0 && obstacles.length < 7) {
-                // Replace random obstacle instead of adding
                 replaceRandomObstacle();
             }
         }
-        
-        // Decrease speed every 5 points (increase interval = slower)
-        if (score % 5 === 0 && score > 0) {
-            gameSpeed = Math.min(gameSpeed + 10, 150); // Max speed same as easy mode
-            if (gameLoop) clearInterval(gameLoop);
-            gameLoop = setInterval(update, gameSpeed);
-        }
+
     } else {
         snake.pop();
     }
