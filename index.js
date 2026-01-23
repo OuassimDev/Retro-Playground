@@ -1,4 +1,6 @@
+var buttonclick = new Audio("./assets/audio/button-click.mp3")
 function openGame(gameName) {
+    buttonclick.play();
     const modal = document.getElementById('gameModal');
     const gameContainer = document.getElementById('gameContainer');
     
@@ -31,6 +33,16 @@ function openGame(gameName) {
             </a> 
             <a href="./Games/Memory/Memory.html?mode=hard">
                 <button>Hard</button>
+            </a>
+        `;
+        
+    } else if (gameName === 'guess') {
+        gameContainer.innerHTML = `
+            <a href="./Games/Guess/Guess.html?mode=guessthenumber">
+                <button>Guess The Number</button>
+            </a> 
+            <a href="./Games/Guess/Guess.html?mode=guesstheword">
+                <button>Guess The Word</button>
             </a>
         `;
         

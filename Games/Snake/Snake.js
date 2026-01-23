@@ -2,10 +2,14 @@ const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const scoreElement = document.getElementById('score');
 const highScoreElement = document.getElementById('highScore');
-const gameTitle = document.getElementById('gameTitle');
+const hometitle = document.getElementById('hometitle');
 const startBtn = document.getElementById('startBtn');
 const resetBtn = document.getElementById('resetBtn');
 const mobileControls = document.getElementById('mobileControls');
+var collect = new Audio('/Working On it/Retro/assets/audio/collect.mp3');
+var gameoversound = new Audio('/Working On it/Retro/assets/audio/game-over-arcade.mp3');
+var buttonclick = new Audio('/Working On it/Retro/assets/audio/button-click.mp3');
+
 let nextDirection = null;
 let isPaused = false;
 
@@ -34,9 +38,9 @@ window.onload = function() {
         isHard = true;
         tileCount = 25; 
         gameSpeed = 100;
-        gameTitle.textContent = 'Hard Mode';
+        hometitle.textContent = 'Hard';
     } else {
-        gameTitle.textContent = 'Easy Mode';
+        hometitle.textContent = 'Easy';
     }
     
     setupCanvas();
@@ -75,7 +79,7 @@ function initGame() {
 
 function startGame() {
     if (gameStarted) return;
-    
+    buttonclick.play();
     gameStarted = true;
     dx = 1;
     dy = 0;
@@ -115,6 +119,7 @@ function update() {
     
     if (snake[0].x === food.x && snake[0].y === food.y) {
         score++;
+        collect.play();
         scoreElement.textContent = score;
         
         if (score > highScore) {
@@ -126,7 +131,6 @@ function update() {
 
         if (isHard) {
             if (obstacles.length < 5) {
-                // Initial obstacles
                 generateObstacles(5 - obstacles.length);
             } else if (score % 5 === 0 && obstacles.length < 7) {
                 replaceRandomObstacle();
@@ -467,7 +471,8 @@ function drawGame() {
 function gameOver() {
     clearInterval(gameLoop);
     gameStarted = false;
-    gameTitle.textContent = '💀 GAME OVER! 💀';
+    hometitle.textContent = '💀 GAME OVER! 💀';
+    gameoversound.play();
     
 
     if (window.innerWidth <= 768) {
@@ -476,13 +481,14 @@ function gameOver() {
     }
     
     setTimeout(() => {
-        gameTitle.textContent = isHard ? 'Hard Mode' : 'Easy Mode';
+        hometitle.textContent = isHard ? 'Hard' : 'Easy';
     }, 2000);
 }
 
 function resetGame() {
     if (gameLoop) clearInterval(gameLoop);
     gameStarted = false;
+    buttonclick.play();
 
     startBtn.style.display = 'inline-block';
     resetBtn.style.display = 'inline-block';
@@ -493,7 +499,7 @@ function resetGame() {
     }
     
     initGame();
-    gameTitle.textContent = isHard ? 'Hard Mode' : 'Easy Mode';
+    hometitle.textContent = isHard ? 'Hard' : 'Easy';
 }
 
 function changeDirection(newDx, newDy) {
@@ -539,9 +545,9 @@ document.addEventListener('keydown', (e) => {
         case 'P':
             isPaused = !isPaused;
             if (isPaused) {
-                gameTitle.textContent = '⏸️ PAUSED';
+                hometitle.textContent = '⏸️ PAUSED';
             } else {
-                gameTitle.textContent = isHard ? 'Hard Mode' : 'Easy Mode';
+                hometitle.textContent = isHard ? 'Hard' : 'Easy';
             }
             break;
             
@@ -552,3 +558,4 @@ window.addEventListener('resize', () => {
     setupCanvas();
     drawGame();
 });
+
