@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Game - Playground</title>
+    <link rel="icon" type="image/x-icon" href="/Working On it/Retro/assets/images/RP.png">
+    <link rel="stylesheet" href="Guess.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="../../index.html#Games" id="hometitle" class="home-btn"></a>
+
+    <div class="stats" id="stats">
+        <div>ATTEMPTS: <span id="attempts">0</span></div>
+    </div>
+
+    
+    <div class="game-container number-game" id="numberGame" style="display: none;">
+        <div class="number-display" id="rangeDisplay">1 - 100</div>
+        <div class="feedback" id="numberFeedback">Guess a number between 1 and 100!</div>
+        
+        <div class="input-group">
+            <input type="number" id="numberInput" min="1" max="100" placeholder="Enter number">
+            <button onclick="guessNumber()">GUESS</button>
+        </div>
+        
+        <button onclick="resetNumberGame()">NEW GAME</button>
+        
+        <div class="guess-history" id="guessHistory"></div>
+    </div>
+
+    
+    <div class="game-container wordle-game" id="wordleGame" style="display: none;">
+        <div class="feedback" id="wordleFeedback">Guess the 5-letter word!</div>
+        
+        <div class="word-grid" id="wordGrid"></div>
+        
+        <div class="keyboard" id="keyboard"></div>
+        
+        <button onclick="resetWordleGame()">NEW GAME</button>
+    </div>
+
+    <script src="Guess.js"></script>
+</body>
+</html>

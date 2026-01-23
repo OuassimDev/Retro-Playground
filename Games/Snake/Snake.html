@@ -4,16 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake - Playground</title>
-    <link rel="icon" type="image/x-icon" href="/Retro/assets/images/RP.png">
+    <link rel="icon" type="image/x-icon" href="/Working On it/Retro/assets/images/RP.png">
     <link rel="stylesheet" href="Snake.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <a href="../../index.html#Games" class="home-btn">🏠 HOME</a>
+    <a href="../../index.html#Games" id="hometitle" class="home-btn"></a>
 
     <div class="game-container">
-        <h1 id="gameTitle">SNAKE GAME</h1>
-        
+
         <div class="score-board">
             <div>SCORE: <span id="score">0</span></div>
             <div>HIGH: <span id="highScore">0</span></div>
@@ -33,11 +32,9 @@
             <button class="arrow-btn" id="downBtn" onclick="changeDirection(0, 1)">↓</button>
         </div>
 
-        <div class="instructions">
-            Use Arrow Keys or WASD to move<br>
-            🟢 = Food | 🟥 = Obstacle (Hard Mode)
-        </div>
     </div>
+
+    
 
     
     
