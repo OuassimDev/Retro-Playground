@@ -6,9 +6,9 @@ const hometitle = document.getElementById('hometitle');
 const startBtn = document.getElementById('startBtn');
 const resetBtn = document.getElementById('resetBtn');
 const mobileControls = document.getElementById('mobileControls');
-var collect = new Audio('/Working On it/Retro/assets/audio/collect.mp3');
-var gameoversound = new Audio('/Working On it/Retro/assets/audio/game-over-arcade.mp3');
-var buttonclick = new Audio('/Working On it/Retro/assets/audio/button-click.mp3');
+var collect = new Audio('Retro/assets/audio/collect.mp3');
+var gameoversound = new Audio('Retro/assets/audio/game-over-arcade.mp3');
+var buttonclick = new Audio('Retro/assets/audio/button-click.mp3');
 
 let nextDirection = null;
 let isPaused = false;
