@@ -558,4 +558,3 @@ window.addEventListener('resize', () => {
     setupCanvas();
     drawGame();
 });
-
