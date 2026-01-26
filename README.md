@@ -41,8 +41,9 @@ Experience the joy of classic arcade games, reimagined for the modern web with p
 | 🐍 **Snake** | The timeless arcade classic where you grow longer with each meal | ✅ Live |
 | ❌⭕ **Tic Tac Toe** | Simple, fast, and competitive — challenge a friend | ✅ Live |
 | 🧠 **Memory Game** | Test and improve your focus with matching cards | ✅ Live |
+| 🤔 **Guess** | Fun Guessing the number or the word | ✅ Live |
 
-> 🎮 **More games coming soon!** Stay tuned for Pong, Space Invaders, Breakout, and more...
+> 🎮 **More games coming soon!** Stay tuned...
 
 ---
 
@@ -72,6 +73,10 @@ Retro-Playground/
 │   │   ├── tictactoe.html
 │   │   ├── tictactoe.js
 │   │   └── tictactoe.css
+│   ├── Guess/
+│   │   ├── Guess.html
+│   │   ├── Guess.js
+│   │   └── Guess.css
 │   └── Memory/
 │       ├── memory.html
 │       ├── memory.js
